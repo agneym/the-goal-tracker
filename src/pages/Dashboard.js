@@ -1,12 +1,13 @@
 import React, { Fragment } from "react";
 
 import Navbar from "../components/Navbar";
+import Goal from "../components/Goal";
 
 function Dashboard() {
   return (
     <Fragment>
       <Navbar />
-      <p>Dashboard</p>
+      <Goal />
     </Fragment>
   );
 }
