@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Checkbox from "./Checkbox";
 
 const Container = styled.section`
   background-color: ${props => props.theme.colors.white};
@@ -10,7 +11,7 @@ const Container = styled.section`
 function Goal() {
   return (
     <Container>
-      <p>Goal</p>
+      <Checkbox id="123" labelText="This is the name of things" />
     </Container>
   );
 }
