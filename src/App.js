@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 
 import Dashboard from "./pages/Dashboard";
@@ -10,9 +10,11 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Router>
-        <Route path="/">
-          <Dashboard />
-        </Route>
+        <Switch>
+          <Route path="/">
+            <Dashboard />
+          </Route>
+        </Switch>
       </Router>
       <GlobalStyles />
     </ThemeProvider>
