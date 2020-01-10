@@ -1,9 +1,14 @@
-import React from "react";
+import React, { Fragment } from "react";
 
 import Navbar from "../components/Navbar";
 
 function Dashboard() {
-  return <Navbar />;
+  return (
+    <Fragment>
+      <Navbar />
+      <p>Dashboard</p>
+    </Fragment>
+  );
 }
 
 export default Dashboard;

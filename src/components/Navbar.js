@@ -8,6 +8,8 @@ const Nav = styled.nav`
   display: flex;
   align-items: center;
   padding: 0 2rem;
+  background-color: ${props => props.theme.colors.purple[500]};
+  color: ${props => props.theme.colors.white};
 `;
 
 const Heading = styled.h1`

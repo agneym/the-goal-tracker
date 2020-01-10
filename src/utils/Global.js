@@ -8,6 +8,7 @@ const GlobalStyles = createGlobalStyle`
     margin: 0;
     font-family: ${props => props.theme.fonts.main};
     font-size: 1.6rem;
+    color: ${props => props.theme.colors.gray[900]};
   }
   html * {
     box-styling: border-box;
