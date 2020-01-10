@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import Checkbox from "./Checkbox";
+import InputButton from "./InputButton";
 
 const Container = styled.section`
   background-color: ${props => props.theme.colors.white};
@@ -16,9 +17,21 @@ const InnerContainer = styled.div`
   margin: 1.4rem 0;
 `;
 
-function Goal() {
+function GoalSection() {
+  const handleSubmit = event => {
+    event.preventDefault();
+  };
   return (
     <Container>
+      <InputButton
+        buttonText="Add"
+        onSubmit={handleSubmit}
+        labelText="Add Goal"
+        visibleLabel={false}
+        id="addGoal"
+        placeholder="Get the Product ready in time for Holidays"
+        required
+      />
       <InnerContainer>
         <Checkbox id="123" labelText="This is the name of things" />
       </InnerContainer>
@@ -26,4 +39,4 @@ function Goal() {
   );
 }
 
-export default Goal;
+export default GoalSection;

@@ -1,13 +1,13 @@
 import React, { Fragment } from "react";
 
 import Navbar from "../components/Navbar";
-import Goal from "../components/Goal";
+import GoalSection from "../components/GoalSection";
 
 function Dashboard() {
   return (
     <Fragment>
       <Navbar />
-      <Goal />
+      <GoalSection />
     </Fragment>
   );
 }
