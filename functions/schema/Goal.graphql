@@ -1,0 +1,9 @@
+type Goal {
+  title: String!
+  completed: Boolean!
+}
+
+type Query {
+  allGoals: [Goal!]
+  goalsByCompletedFlag(completed: Boolean!): [Goal!]
+}

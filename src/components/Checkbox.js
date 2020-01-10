@@ -52,7 +52,7 @@ const TickContainer = styled.span`
     top: 0.3rem;
     left: 0.2rem;
     fill: none;
-    stroke: #FFFFFF;
+    stroke: ${props => props.theme.colors.white};
     stroke-width: 2;
     stroke-linecap: round;
     stroke-linejoin: round;
