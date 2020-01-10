@@ -24,7 +24,8 @@ const Input = styled.input`
 `;
 
 const LabelText = styled.span`
-  padding-left: 1rem;
+  padding-left: 1.5rem;
+  vertical-align: middle;
 
   ${Input}:checked + ${Label}>& {
     text-decoration: line-through;
@@ -96,7 +97,7 @@ function Checkbox({ id, labelText, ...rest }) {
       <Input type="checkbox" id={id} {...rest} />
       <Label for={id}>
         <TickContainer>
-          <svg viewbox="0 0 12 10">
+          <svg viewBox="0 0 12 10">
             <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
           </svg>
         </TickContainer>
