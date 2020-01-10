@@ -135,6 +135,9 @@ const theme = {
   fonts,
   colors,
   boxShadows,
+  nav: {
+    height: "6rem",
+  },
 };
 
 export default theme;

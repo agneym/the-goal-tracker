@@ -1,7 +1,9 @@
 import React from "react";
 
+import Navbar from "../components/Navbar";
+
 function Dashboard() {
-  return <p>Dashboard</p>;
+  return <Navbar />;
 }
 
 export default Dashboard;
