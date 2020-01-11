@@ -7,6 +7,7 @@ import Dashboard from "./pages/Dashboard";
 import GlobalStyles from "./utils/Global";
 import theme from "./utils/theme";
 import client from "./client";
+import Auth from "./pages/Auth";
 
 function App() {
   return (
@@ -14,6 +15,9 @@ function App() {
       <ApolloProvider client={client}>
         <Router>
           <Switch>
+            <Route path="/auth">
+              <Auth />
+            </Route>
             <Route path="/">
               <Dashboard />
             </Route>
