@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery, useMutation } from "@apollo/react-hooks";
 
 import InputButton from "../InputButton";
 import Goal from "../Goal";
 import GET_GOALS from "./getGoals";
+import CREATE_GOAL from "./createGoal";
 
 const Container = styled.section`
   background-color: ${props => props.theme.colors.white};
@@ -21,11 +22,16 @@ const ListingSection = styled.section`
 
 function GoalSection() {
   const { data, loading, error } = useQuery(GET_GOALS);
-  const handleSubmit = event => {
+  const [createGoal] = useMutation(CREATE_GOAL);
+
+  const handleSubmit = async event => {
     event.preventDefault();
     const form = event.target;
     const goalText = form.addGoal.value;
-    form.reset();
+    const response = await createGoal({
+      variables: { title: goalText, completed: false },
+    });
+    console.log(response);
   };
   const goals = data?.allGoals.data ?? [];
   return (
@@ -45,7 +51,12 @@ function GoalSection() {
       <ListingSection>
         <h2>CURRENT GOALS</h2>
         {goals.map(goal => (
-          <Goal labelText={goal.title} completionStatus={goal.completed} />
+          <Goal
+            id={goal._id}
+            key={goal._id}
+            labelText={goal.title}
+            completionStatus={goal.completed}
+          />
         ))}
       </ListingSection>
     </Container>
