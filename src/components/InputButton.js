@@ -13,6 +13,8 @@ const Input = styled.input`
   flex: 1;
   padding: 1.4rem 1.2rem;
   border: 1px solid ${props => props.theme.colors.gray[400]};
+  font-family: inherit;
+  letter-spacing: 0.03rem;
 `;
 
 const Label = styled.label`
