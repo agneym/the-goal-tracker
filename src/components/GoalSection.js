@@ -13,6 +13,10 @@ const Container = styled.section`
   margin: 4rem auto;
 `;
 
+const ListingSection = styled.section`
+  margin: 1rem 0;
+`;
+
 function GoalSection() {
   const handleSubmit = event => {
     event.preventDefault();
@@ -20,17 +24,22 @@ function GoalSection() {
   };
   return (
     <Container>
-      <InputButton
-        buttonText="Add"
-        onSubmit={handleSubmit}
-        labelText="Add Goal"
-        visibleLabel={false}
-        id="addGoal"
-        name="addGoal"
-        placeholder="Get the Product ready in time for Holidays"
-        required
-      />
-      <Goal />
+      <header>
+        <InputButton
+          buttonText="Add"
+          onSubmit={handleSubmit}
+          labelText="Add Goal"
+          visibleLabel={false}
+          id="addGoal"
+          name="addGoal"
+          placeholder="Get the Product ready in time for Holidays"
+          required
+        />
+      </header>
+      <ListingSection>
+        <h2>CURRENT GOALS</h2>
+        <Goal />
+      </ListingSection>
     </Container>
   );
 }
