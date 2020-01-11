@@ -18,9 +18,9 @@ const Container = styled.div`
   }
 `;
 
-function Loader() {
+function Loader({ className }) {
   return (
-    <Container>
+    <Container className={className}>
       <img src={ballTriangle} alt="Loading indicator" />
     </Container>
   );

@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
+import Button from "./Button";
 import VisuallyHidden from "../utils/VisuallyHidden";
 
 const Form = styled.form`
@@ -21,15 +22,9 @@ const Label = styled.label`
   ${props => !props.visibleLabel && VisuallyHidden}
 `;
 
-const Button = styled.button`
-  padding: 1.4rem 2rem;
-  box-shadow: none;
+const AsideButton = styled(Button)`
   color: ${props => props.theme.colors.white};
   background-color: ${props => props.theme.colors.indigo[500]};
-  border: none;
-  cursor: pointer;
-  letter-spacing: 0.15rem;
-  text-transform: uppercase;
 
   &:hover {
     background-color: ${props => props.theme.colors.indigo[400]};
@@ -46,6 +41,7 @@ function InputButton({
   visibleLabel = true,
   buttonText,
   onSubmit,
+  loading,
   ...rest
 }) {
   return (
@@ -54,7 +50,9 @@ function InputButton({
         {labelText}
       </Label>
       <Input type="text" id={id} {...rest} />
-      <Button type="submit">{buttonText}</Button>
+      <AsideButton loading={loading} type="submit">
+        {buttonText}
+      </AsideButton>
     </Form>
   );
 }
