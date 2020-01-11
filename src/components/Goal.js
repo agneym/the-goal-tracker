@@ -7,10 +7,14 @@ const InnerContainer = styled.div`
   margin: 1.4rem 0;
 `;
 
-function Goal() {
+function Goal({ id, labelText, completionStatus }) {
   return (
     <InnerContainer>
-      <Checkbox id="123" labelText="This is the name of things" />
+      <Checkbox
+        id={id}
+        labelText={labelText}
+        completionStatus={completionStatus}
+      />
     </InnerContainer>
   );
 }
