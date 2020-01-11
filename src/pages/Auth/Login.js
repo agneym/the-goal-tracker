@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+
 import Input from "../../components/Input";
+import Button from "../../components/Button";
 
 const Container = styled.section`
   background-color: ${props => props.theme.colors.white};
@@ -20,6 +22,7 @@ function Login() {
       <form>
         <StyledInput
           fullWidth
+          name="email"
           id="email"
           type="email"
           labelText="Email Address"
@@ -28,12 +31,16 @@ function Login() {
         />
         <StyledInput
           fullWidth
+          name="password"
           id="password"
           type="password"
           labelText="Password"
           placeholder="******"
           autoComplete="current-password"
         />
+        <Button variant="primary" fullWidth>
+          LOGIN
+        </Button>
       </form>
     </Container>
   );
