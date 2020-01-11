@@ -2,24 +2,12 @@ import React from "react";
 import styled from "styled-components";
 
 import Button from "./Button";
-import VisuallyHidden from "../utils/VisuallyHidden";
+import Input from "./Input";
 
 const Form = styled.form`
   margin: 1.5rem 0;
   width: 100%;
   display: flex;
-`;
-
-const Input = styled.input`
-  flex: 1;
-  padding: 1.4rem 1.2rem;
-  border: 1px solid ${props => props.theme.colors.gray[400]};
-  font-family: inherit;
-  letter-spacing: 0.03rem;
-`;
-
-const Label = styled.label`
-  ${props => !props.visibleLabel && VisuallyHidden}
 `;
 
 const AsideButton = styled(Button)`
@@ -46,10 +34,12 @@ function InputButton({
 }) {
   return (
     <Form onSubmit={onSubmit}>
-      <Label htmlFor={id} visible={visibleLabel}>
-        {labelText}
-      </Label>
-      <Input type="text" id={id} {...rest} />
+      <Input
+        id={id}
+        labelText={labelText}
+        visibleLabel={visibleLabel}
+        {...rest}
+      />
       <AsideButton loading={loading} type="submit">
         {buttonText}
       </AsideButton>
