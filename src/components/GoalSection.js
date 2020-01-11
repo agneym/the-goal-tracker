@@ -20,7 +20,9 @@ const ListingSection = styled.section`
 function GoalSection() {
   const handleSubmit = event => {
     event.preventDefault();
-    const goalText = event.target.addGoal.value;
+    const form = event.target;
+    const goalText = form.addGoal.value;
+    form.reset();
   };
   return (
     <Container>
