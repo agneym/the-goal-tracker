@@ -6,6 +6,7 @@ import InputButton from "../InputButton";
 import Goal from "../Goal";
 import GET_GOALS from "./getGoals";
 import CREATE_GOAL from "./createGoal";
+import Loader from "../Loader";
 
 const Container = styled.section`
   background-color: ${props => props.theme.colors.white};
@@ -18,11 +19,13 @@ const Container = styled.section`
 
 const ListingSection = styled.section`
   margin: 1rem 0;
+  position: relative;
+  min-height: 60rem;
 `;
 
 function GoalSection() {
   const { data, loading, error } = useQuery(GET_GOALS);
-  const [createGoal] = useMutation(CREATE_GOAL, {
+  const [createGoal, { loading: createLoading }] = useMutation(CREATE_GOAL, {
     refetchQueries: [
       {
         query: GET_GOALS,
@@ -54,6 +57,7 @@ function GoalSection() {
           name="addGoal"
           placeholder="Get the Product ready in time for Holidays"
           required
+          loading={createLoading}
         />
       </header>
       <ListingSection>
@@ -66,6 +70,7 @@ function GoalSection() {
             completionStatus={goal.completed}
           />
         ))}
+        {loading && <Loader />}
       </ListingSection>
     </Container>
   );
