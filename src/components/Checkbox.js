@@ -91,10 +91,15 @@ const TickContainer = styled.span`
   }
 `;
 
-function Checkbox({ id, labelText, ...rest }) {
+function Checkbox({ id, labelText, checked, ...rest }) {
   return (
     <Field>
-      <Input type="checkbox" id={id} {...rest} />
+      <Input
+        type="checkbox"
+        id={id}
+        checked={checked ? "checked" : undefined}
+        {...rest}
+      />
       <Label htmlFor={id}>
         <TickContainer>
           <svg viewBox="0 0 12 10">

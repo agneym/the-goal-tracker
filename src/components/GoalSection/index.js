@@ -22,7 +22,13 @@ const ListingSection = styled.section`
 
 function GoalSection() {
   const { data, loading, error } = useQuery(GET_GOALS);
-  const [createGoal] = useMutation(CREATE_GOAL);
+  const [createGoal] = useMutation(CREATE_GOAL, {
+    refetchQueries: [
+      {
+        query: GET_GOALS,
+      },
+    ],
+  });
 
   const handleSubmit = async event => {
     event.preventDefault();
@@ -31,7 +37,9 @@ function GoalSection() {
     const response = await createGoal({
       variables: { title: goalText, completed: false },
     });
-    console.log(response);
+    if (response?.data.createGoal._id) {
+      form.reset();
+    }
   };
   const goals = data?.allGoals.data ?? [];
   return (
