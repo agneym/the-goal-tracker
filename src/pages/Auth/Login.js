@@ -17,13 +17,21 @@ const StyledInput = styled(Input)`
 `;
 
 function Login() {
+  const handleSubmit = event => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password);
+  };
   return (
     <Container>
-      <form>
+      <form onSubmit={handleSubmit}>
         <StyledInput
           fullWidth
           name="email"
           id="email"
+          required
           type="email"
           labelText="Email Address"
           placeholder="johndoe@email.com"
@@ -33,12 +41,13 @@ function Login() {
           fullWidth
           name="password"
           id="password"
+          required
           type="password"
           labelText="Password"
           placeholder="******"
           autoComplete="current-password"
         />
-        <Button variant="primary" fullWidth>
+        <Button variant="primary" fullWidth type="submit">
           LOGIN
         </Button>
       </form>
