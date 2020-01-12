@@ -3,11 +3,11 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import { ApolloProvider } from "@apollo/react-hooks";
 
-import Dashboard from "./pages/Dashboard";
+import Dashboard from "./components/Dashboard";
 import GlobalStyles from "./utils/Global";
 import theme from "./utils/theme";
 import client from "./client";
-import Auth from "./pages/Auth";
+import Auth from "./components/Auth";
 
 function App() {
   return (

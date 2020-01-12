@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-import Input from "../../components/Input";
-import Button from "../../components/Button";
+import Input from "../Input";
+import Button from "../Button";
 
 const Container = styled.section`
   background-color: ${props => props.theme.colors.white};
@@ -29,13 +29,13 @@ function Login() {
       <form onSubmit={handleSubmit}>
         <StyledInput
           fullWidth
-          name="email"
-          id="email"
+          name="username"
+          id="username"
           required
-          type="email"
-          labelText="Email Address"
-          placeholder="johndoe@email.com"
-          autoComplete="email"
+          type="text"
+          labelText="Username"
+          placeholder="johndoe"
+          autoComplete="username"
         />
         <StyledInput
           fullWidth

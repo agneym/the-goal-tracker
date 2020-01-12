@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 
-import Navbar from "../components/Navbar";
-import GoalSection from "../components/GoalSection";
+import Navbar from "./Navbar";
+import GoalSection from "./GoalSection";
 
 function Dashboard() {
   return (
