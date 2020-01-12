@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 import Input from "../../components/Input";
 import Button from "../../components/Button";
@@ -7,9 +8,8 @@ import Button from "../../components/Button";
 const Container = styled.section`
   background-color: ${props => props.theme.colors.white};
   padding: 2.5rem 5rem;
-  width: 40%;
+  width: 100%;
   max-width: 800px;
-  min-width: 500px;
 `;
 
 const StyledInput = styled(Input)`
@@ -47,9 +47,13 @@ function Login() {
           placeholder="******"
           autoComplete="current-password"
         />
-        <Button variant="primary" fullWidth type="submit">
-          LOGIN
-        </Button>
+        <div>
+          <Button variant="primary" fullWidth type="submit">
+            LOGIN
+          </Button>
+          <p>OR</p>
+          <Link to="/auth/register">REGISTER</Link>
+        </div>
       </form>
     </Container>
   );

@@ -1,2 +1,2 @@
 export const GRAPHQL_ENDPOINT = "https://graphql.fauna.com/graphql";
-export const FAUNA_CLIENT_KEY = "fnADh0kS2NACEh_U20z5hhFIhWnz0AmFhRXHdZdN";
+export const FAUNA_CLIENT_KEY = "fnADh4aB_oACFEw1VD6V2f9i_gM3HmOBHv4A06LS";
