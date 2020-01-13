@@ -27,7 +27,7 @@ Do(
       )
     )
   }),
-  Update(Function("create"), {
+  Update(Function("create_new_goal"), {
     "body": Query(
       Lambda(["input"],
         Create(Collection("Goal"), {
