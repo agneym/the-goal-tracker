@@ -12,7 +12,8 @@ Do(
           }
         })
       )
-    )
+    ),
+    "role": "server"
   }),
   Update(Function("login_user"), {
     "body": Query(
@@ -25,7 +26,8 @@ Do(
           )
         )
       )
-    )
+    ),
+    "role": "server"
   }),
   Update(Function("create_new_goal"), {
     "body": Query(
@@ -39,14 +41,6 @@ Do(
         })
       )
     )
-  }),
-  CreateKey({
-    name: "Client key",
-    role: "client",
-    privileges: [
-      { resource: Function("create_user"), actions: { call: true } },
-      { resource: Function("login_user"), actions: { call: true } },
-    ]
   }),
   CreateRole({
     name: "normal_user",
@@ -70,5 +64,16 @@ Do(
         }
       }
     ]
+  }),
+  CreateRole({
+    name: "browser-auth",
+    privileges: [
+      { resource: Function("create_user"), actions: { call: true } },
+      { resource: Function("login_user"), actions: { call: true } },
+    ]
+  }),
+  CreateKey({
+    name: "Browser Auth",
+    role: Role("browser-auth")
   })
 )
