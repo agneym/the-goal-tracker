@@ -1,9 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { useMutation } from "@apollo/react-hooks";
 
 import Input from "../Input";
 import Button from "../Button";
+import LOGIN_USER from "./loginUser";
+import cogoToast from "cogo-toast";
 
 const Container = styled.section`
   background-color: ${props => props.theme.colors.white};
@@ -16,13 +19,29 @@ const StyledInput = styled(Input)`
   margin: 2rem 0;
 `;
 
+const ActionContainer = styled.div`
+  text-align: center;
+`;
+
 function Login() {
-  const handleSubmit = event => {
+  const [loginUser, { data }] = useMutation(LOGIN_USER);
+  const handleSubmit = async event => {
     event.preventDefault();
     const form = event.target;
-    const email = form.email.value;
+    const username = form.username.value;
     const password = form.password.value;
-    console.log(email, password);
+    try {
+      const response = await loginUser({
+        variables: {
+          username,
+          password,
+        },
+      });
+      form.reset();
+      cogoToast.success("Login successfull");
+    } catch (err) {
+      cogoToast.error(err?.message);
+    }
   };
   return (
     <Container>
@@ -47,14 +66,15 @@ function Login() {
           placeholder="******"
           autoComplete="current-password"
         />
-        <div>
+        <ActionContainer>
           <Button variant="primary" fullWidth type="submit">
             LOGIN
           </Button>
           <p>OR</p>
           <Link to="/auth/register">REGISTER</Link>
-        </div>
+        </ActionContainer>
       </form>
+      {data?.createUser._id && <Redirect to="/" />}
     </Container>
   );
 }

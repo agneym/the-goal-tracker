@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { useMutation } from "@apollo/react-hooks";
+import CogoToast from "cogo-toast";
 
 import Input from "../Input";
 import Button from "../Button";
@@ -18,6 +19,10 @@ const StyledInput = styled(Input)`
   margin: 2rem 0;
 `;
 
+const ActionContainer = styled.div`
+  text-align: center;
+`;
+
 function Register() {
   const [createUser, { data }] = useMutation(CREATE_USER);
   const handleSubmit = async event => {
@@ -26,14 +31,21 @@ function Register() {
     const name = form.name.value;
     const username = form.username.value;
     const password = form.password.value;
-    const response = await createUser({
-      variables: {
-        name,
-        username,
-        password,
-      },
-    });
-    console.log(response);
+    try {
+      const response = await createUser({
+        variables: {
+          name,
+          username,
+          password,
+        },
+      });
+      if (response) {
+        form.reset();
+        CogoToast.success("User registered successfully.");
+      }
+    } catch (err) {
+      CogoToast.error(err?.message);
+    }
   };
   return (
     <Container>
@@ -66,16 +78,17 @@ function Register() {
           type="password"
           labelText="Password"
           placeholder="******"
-          autoComplete="current-password"
+          autoComplete="new-password"
         />
-        <div>
+        <ActionContainer>
           <Button variant="primary" fullWidth type="submit">
             REGISTER
           </Button>
           <p>OR</p>
           <Link to="/auth/login">LOGIN</Link>
-        </div>
+        </ActionContainer>
       </form>
+      {data?.createUser._id && <Redirect to="/auth/login" />}
     </Container>
   );
 }
