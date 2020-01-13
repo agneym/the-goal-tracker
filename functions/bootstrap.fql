@@ -1,0 +1,73 @@
+Do(
+  Update(Function("create_user"), {
+    "body": Query(
+      Lambda(["input"],
+        Create(Collection("User"), {
+          data: {
+            username: Select("username", Var("input")),
+          },
+          credentials: {
+            password: Select("password", Var("input"))
+          }
+        })
+      )
+    )
+  }),
+  Update(Function("login_user"), {
+    "body": Query(
+      Lambda(["input"],
+        Select(
+          "secret",
+          Login(
+            Match(Index("unique_User_username"), Select("username", Var("input"))),
+            { password: Select("password", Var("input")) }
+          )
+        )
+      )
+    )
+  }),
+  Update(Function("create"), {
+    "body": Query(
+      Lambda(["input"],
+        Create(Collection("Goal"), {
+          data: {
+            title: Select("title", Var("input")),
+            completed: false,
+            owner: Identity(),
+          }
+        })
+      )
+    )
+  }),
+  CreateKey({
+    name: "Client key",
+    role: "client",
+    privileges: [
+      { resource: Function("create_user"), actions: { call: true } },
+      { resource: Function("login_user"), actions: { call: true } },
+    ]
+  }),
+  CreateRole({
+    name: "normal_user",
+    membership: {
+      resource: Collection("User")
+    },
+    privileges: [
+      { resource: Collection("User"), actions: { read: true } },
+      { resource: Index("unique_User_username"), actions: { read: true } },
+      { resource: Index("allGoals"), actions: { read: true } },
+      { resource: Function("create_new_goal"), actions: { call: true } },
+      {
+        resource: Collection("Goal"),
+        actions: {
+          read: Query(
+            Lambda("goalRef", Equals(Select(["data", "owner"], Get(Var("goalRef"))), Identity()))
+          ),
+          write: Query(
+            Lambda("goalRef", Equals(Select(["data", "owner"], Get(Var("goalRef"))), Identity()))
+          )
+        }
+      }
+    ]
+  })
+)

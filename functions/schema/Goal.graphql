@@ -1,6 +1,7 @@
 type Goal {
   title: String!
   completed: Boolean!
+  owner: User!
 }
 
 type User {
@@ -25,11 +26,10 @@ input GoalInput {
 type Query {
   allGoals: [Goal!]
   goalsByCompletedFlag(completed: Boolean!): [Goal!]
-  owner: User!
 }
 
 type Mutation {
   createUser(input: CreateUserInput): User! @resolver(name: "create_user")
   loginUser(input: LoginUserInput): String! @resolver(name: "login_user")
-  createNewGoal(input: GoalInput): Goal! @resolver(name: "create_new_goal")
+  createGoal(input: GoalInput): Goal! @resolver(name: "create_new_goal")
 }
