@@ -1,9 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { useMutation } from "@apollo/react-hooks";
 
 import Input from "../Input";
 import Button from "../Button";
+import CREATE_USER from "./createUser";
 
 const Container = styled.section`
   background-color: ${props => props.theme.colors.white};
@@ -17,13 +19,21 @@ const StyledInput = styled(Input)`
 `;
 
 function Register() {
-  const handleSubmit = event => {
+  const [createUser, { data }] = useMutation(CREATE_USER);
+  const handleSubmit = async event => {
     event.preventDefault();
     const form = event.target;
     const name = form.name.value;
-    const email = form.email.value;
+    const username = form.username.value;
     const password = form.password.value;
-    console.log(name, email, password);
+    const response = await createUser({
+      variables: {
+        name,
+        username,
+        password,
+      },
+    });
+    console.log(response);
   };
   return (
     <Container>
