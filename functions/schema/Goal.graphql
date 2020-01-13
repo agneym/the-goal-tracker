@@ -5,10 +5,12 @@ type Goal {
 }
 
 type User {
+  name: String!
   username: String! @unique
 }
 
 input CreateUserInput {
+  name: String!
   username: String!
   password: String!
 }

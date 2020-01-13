@@ -4,6 +4,7 @@ Do(
       Lambda(["input"],
         Create(Collection("User"), {
           data: {
+            name: Select("name", Var("input")),
             username: Select("username", Var("input")),
           },
           credentials: {
