@@ -3,6 +3,7 @@ import { createHttpLink } from "apollo-link-http";
 import { setContext } from "apollo-link-context";
 import { InMemoryCache } from "apollo-cache-inmemory";
 
+import storage from "./utils/storage";
 import { GRAPHQL_ENDPOINT, FAUNA_CLIENT_KEY } from "./utils/constants";
 
 const httpLink = createHttpLink({
@@ -10,7 +11,7 @@ const httpLink = createHttpLink({
 });
 
 const authLink = setContext((_, { headers }) => {
-  const token = FAUNA_CLIENT_KEY;
+  const token = storage.get("token") || FAUNA_CLIENT_KEY;
   return {
     headers: {
       ...headers,

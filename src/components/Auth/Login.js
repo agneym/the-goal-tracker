@@ -1,12 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { useMutation } from "@apollo/react-hooks";
+import cogoToast from "cogo-toast";
 
+import storage from "../../utils/storage";
 import Input from "../Input";
 import Button from "../Button";
 import LOGIN_USER from "./loginUser";
-import cogoToast from "cogo-toast";
 
 const Container = styled.section`
   background-color: ${props => props.theme.colors.white};
@@ -37,8 +38,11 @@ function Login() {
           password,
         },
       });
-      form.reset();
-      cogoToast.success("Login successfull");
+      if (response.data) {
+        storage.set("token", response.data?.loginUser);
+        form.reset();
+        cogoToast.success("Login successfull");
+      }
     } catch (err) {
       cogoToast.error(err?.message);
     }
@@ -74,7 +78,7 @@ function Login() {
           <Link to="/auth/register">REGISTER</Link>
         </ActionContainer>
       </form>
-      {data?.createUser._id && <Redirect to="/" />}
+      {data?.loginUser && <Redirect to="/" />}
     </Container>
   );
 }
