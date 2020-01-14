@@ -38,6 +38,7 @@ function InputButton({
         id={id}
         labelText={labelText}
         visibleLabel={visibleLabel}
+        fullWidth
         {...rest}
       />
       <AsideButton loading={loading} type="submit">
