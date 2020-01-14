@@ -40,7 +40,8 @@ Do(
           }
         })
       )
-    )
+    ),
+    "role": "server"
   }),
   CreateRole({
     name: "normal_user",
@@ -71,9 +72,5 @@ Do(
       { resource: Function("create_user"), actions: { call: true } },
       { resource: Function("login_user"), actions: { call: true } },
     ]
-  }),
-  CreateKey({
-    name: "Browser Auth",
-    role: Role("browser-auth")
   })
 )
